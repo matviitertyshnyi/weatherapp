@@ -11,6 +11,7 @@ import * as Location from "expo-location";
 import MapView, { Marker } from "react-native-maps";
 import MapViewModule from "./modules/MapViewModule";
 import GooglePlacesInput from "./modules/SearchBar";
+import MenuBtn from "./modules/MenuBtn";
 
 
 const Waiting_Driver_Screen = () => {
@@ -20,6 +21,7 @@ const Waiting_Driver_Screen = () => {
       
       <MapViewModule></MapViewModule>
       <GooglePlacesInput></GooglePlacesInput>
+      <MenuBtn></MenuBtn>
     </View>
   );
 };
