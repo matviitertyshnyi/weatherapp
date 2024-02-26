@@ -10,13 +10,16 @@ import {
 import * as Location from "expo-location";
 import MapView, { Marker } from "react-native-maps";
 import MapViewModule from "./modules/MapViewModule";
+import GooglePlacesInput from "./modules/SearchBar";
 
 
 const Waiting_Driver_Screen = () => {
   
   return (
     <View style={styles.container}>
+      
       <MapViewModule></MapViewModule>
+      <GooglePlacesInput></GooglePlacesInput>
     </View>
   );
 };
