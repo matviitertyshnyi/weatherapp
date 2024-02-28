@@ -14,11 +14,11 @@ const GooglePlacesInput = () => {
   return (
     <View style={styles.container}>
     <GooglePlacesAutocomplete 
-      ref={ref}
-      placeholder= 'Search'
+        GooglePlacesDetailsQuery={{ fields: "geometry" }}
+        fetchDetails={true} // you need this to fetch the details object onPress
+        placeholder="Search"
       onPress={(data, details = null) => {
-        // 'details' is provided when fetchDetails = true
-        console.log(data, details);
+        console.log(JSON.stringify(details?.geometry?.location.lat));
       }}
       query={{
         key: GOOGLE_PLACES_API_KEY,
@@ -32,10 +32,10 @@ const GooglePlacesInput = () => {
 };
 const styles = StyleSheet.create({
     container:{
-        top: 25,
+        top: 35,
         right: 20,
         height: 200,
-        width: 200,
+        width: "70%",
         position: "absolute",
     }
   });

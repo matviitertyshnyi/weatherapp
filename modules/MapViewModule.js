@@ -2,9 +2,11 @@ import React, {useState,useEffect} from "react"
 import * as Location from "expo-location";
 import { StyleSheet, View } from "react-native";
 import MapView, { Marker } from "react-native-maps";
+import { Dimensions } from "react-native";
 
 const MapViewModule = () =>{
 
+  const windowHeight = Dimensions.get('window').height;
   const [currentLocation, setCurrentLocation] = useState(null);
   const [initialRegion, setInitialRegion] = useState(null);
 
@@ -22,8 +24,8 @@ const MapViewModule = () =>{
       setInitialRegion({
         latitude: location.coords.latitude,
         longitude: location.coords.longitude,
-        latitudeDelta: 0.05,
-        longitudeDelta: 0.05,
+        latitudeDelta: 1,
+        longitudeDelta: 1,
       });
     };
 
@@ -56,7 +58,7 @@ const styles = StyleSheet.create({
     top:0,
     left:0,
     width: "100%",
-    height: "25%",
+    height: 250,
   },
 });
   export default MapViewModule;
