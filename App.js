@@ -7,11 +7,8 @@ import {
   Dimensions,
   Image,
 } from "react-native";
-import * as Location from "expo-location";
-import MapView, { Marker } from "react-native-maps";
-import MapViewModule from "./modules/MapViewModule";
-import GooglePlacesInput from "./modules/SearchBar";
 import MenuBtn from "./modules/MenuBtn";
+import MapWithSearch from "./modules/MapWithSearch";
 
 
 const Waiting_Driver_Screen = () => {
@@ -19,8 +16,7 @@ const Waiting_Driver_Screen = () => {
   return (
     <View style={styles.container}>
       
-      <MapViewModule></MapViewModule>
-      <GooglePlacesInput></GooglePlacesInput>
+      <MapWithSearch></MapWithSearch>
       <MenuBtn></MenuBtn>
     </View>
   );
