@@ -4,6 +4,7 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 import MapView, { Marker } from 'react-native-maps';
 import { StyleSheet } from 'react-native';
 
+
 const MapWithSearch = () => {
   const [selectedLocation, setSelectedLocation] = useState(null);
 
@@ -11,6 +12,7 @@ const MapWithSearch = () => {
     if (details && details.geometry && details.geometry.location) {
       const { lat, lng } = details.geometry.location;
       setSelectedLocation({ latitude: lat, longitude: lng });
+      console.log(lat, lng, data.terms[1]);
     } else {
       console.warn("Selected place details are missing or invalid:", JSON.stringify(details?.geometry?.location));
       // Handle the error gracefully, e.g., display a message to the user
@@ -23,9 +25,13 @@ const MapWithSearch = () => {
 
   return (
     <>
-        
+        <View style={styles.map}
+        pointerEvents='none'
+        >
+
       <MapView
         style={styles.map}
+        userInteraction = {false}
         region={selectedLocation ? {
           latitude: selectedLocation.latitude,
           longitude: selectedLocation.longitude,
@@ -41,6 +47,8 @@ const MapWithSearch = () => {
           />
         )}
       </MapView>
+      
+      </View>
       <View style={styles.container2}>
       <GooglePlacesAutocomplete
         placeholder='Search'
