@@ -7,12 +7,11 @@ const WeatherApp = () => {
   const apiKey = '253682c0bd759acfb4255d4aa08c3dd7';
   const lat = 33;
   const lon = 32;
-  const part = 'current';
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
         const response = await axios.get(
-          `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=${part}&appid=${apiKey}`
+          `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`
         );
         setWeatherData(response.data);
       } catch (error) {
@@ -21,7 +20,7 @@ const WeatherApp = () => {
     };
 
     fetchWeatherData();
-  }, [apiKey, lat, lon, part]);
+  }, [apiKey, lat, lon]);
 
   if (!weatherData) {
     return (

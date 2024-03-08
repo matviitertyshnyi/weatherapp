@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text } from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import MapView, { Marker } from 'react-native-maps';
 import { StyleSheet } from 'react-native';
-
+import axios from 'axios';
 
 const MapWithSearch = () => {
   const [selectedLocation, setSelectedLocation] = useState(null);
@@ -19,9 +19,46 @@ const MapWithSearch = () => {
         console.log(JSON.stringify(details?.geometry?.location));
     }
   };
+
+
+  const Request = ({ selectedLocation }) => {
+  const [weatherData, setWeatherData] = useState(null);
+  const apiKey = '253682c0bd759acfb4255d4aa08c3dd7';
+
+
+  const lat = selectedLocation?.latitude;
+  const lng = selectedLocation?.longitude;
   
-  
-  
+  useEffect(() => {
+    const fetchWeatherData = async () => {
+      try {
+        const response = await axios.get(
+          `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${apiKey}`
+        );
+        setWeatherData(response.data);
+      } catch (error) {
+        console.error('Error fetching weather data:', error);
+      }
+    };
+
+    fetchWeatherData();
+  }, [apiKey, lat, lng]);
+
+  if (!weatherData) {
+    return (
+      <View>
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
+
+  return (
+    <View>
+      <Text>Temperature: {Math.round(weatherData.main.temp-273)} °C</Text>
+      <Text>Description: {weatherData.weather[0].description}</Text>
+    </View>
+  );
+}
 
   return (
     <>
@@ -61,6 +98,7 @@ const MapWithSearch = () => {
         }}
       />
       </View>
+      <Request selectedLocation={selectedLocation}></Request>
     </>
   );
 };

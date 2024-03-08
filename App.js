@@ -19,7 +19,6 @@ const Waiting_Driver_Screen = () => {
       
       <MapWithSearch></MapWithSearch>
       <MenuBtn></MenuBtn>
-      <WeatherApp></WeatherApp>
     </View>
   );
 };
