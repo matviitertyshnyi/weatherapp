@@ -4,15 +4,17 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 import MapView, { Marker } from 'react-native-maps';
 import { StyleSheet } from 'react-native';
 import axios from 'axios';
+import * as Font from 'expo-font';
 
 const MapWithSearch = () => {
+ 
   const [selectedLocation, setSelectedLocation] = useState(null);
 
   const handlePlaceSelected = (data, details) => {
     if (details && details.geometry && details.geometry.location) {
       const { lat, lng } = details.geometry.location;
       setSelectedLocation({ latitude: lat, longitude: lng });
-      console.log(lat, lng, data.terms[1]);
+      console.log(lat, lng, data.terms[0]);
     } else {
       console.warn("Selected place details are missing or invalid:", JSON.stringify(details?.geometry?.location));
       // Handle the error gracefully, e.g., display a message to the user
@@ -53,9 +55,11 @@ const MapWithSearch = () => {
   }
 
   return (
-    <View>
-      <Text>Temperature: {Math.round(weatherData.main.temp-273)} °C</Text>
-      <Text>Description: {weatherData.weather[0].description}</Text>
+    <View style={styles.showInfo}>
+      <Text style={styles.box}>T:</Text>
+      <Text style={[styles.box , styles.tempData]}> {Math.round(weatherData.main.temp-273)} °C</Text>
+      <Text style={styles.box}>I:</Text>
+      <Text style={[styles.box , styles.tempData]}>{weatherData.weather[0].description}</Text>
     </View>
   );
 }
@@ -122,5 +126,28 @@ const styles = StyleSheet.create({
         width: "70%",
         position: "absolute",
     },
+    showInfo:{
+      flex:0,
+
+      width:"100%",
+      height:"20%",
+      alignContent:"space-around",
+      flexDirection:"row",
+      flexWrap:"wrap",
+    },
+    box:{
+      textShadowColor: 'rgba(127, 127, 127, 0.75)',
+      textShadowOffset: {width: 2, height: 2},
+      textShadowRadius: 1,
+      width:"20%",
+      height:"40%",
+      borderColor:"black",
+      borderWidth:0,
+      textAlign:"center",
+      fontSize:40,
+    },
+    tempData:{
+      width:"80%",
+    }
   });
 export default MapWithSearch;
