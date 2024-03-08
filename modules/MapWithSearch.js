@@ -5,6 +5,7 @@ import MapView, { Marker } from 'react-native-maps';
 import { StyleSheet } from 'react-native';
 import axios from 'axios';
 import * as Font from 'expo-font';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const MapWithSearch = () => {
  
@@ -88,7 +89,11 @@ const MapWithSearch = () => {
           />
         )}
       </MapView>
-      
+      <LinearGradient style={styles.map} 
+      colors={['rgba(255,255,255,1)', 'transparent']}
+      start={{ x: 0.5, y: 1 }}
+        end={{ x: 0.5, y: 0 }}
+      ></LinearGradient>
       </View>
       <View style={styles.container2}>
       <GooglePlacesAutocomplete
@@ -117,7 +122,7 @@ const styles = StyleSheet.create({
       top:0,
       left:0,
       width: "100%",
-      height: 250,
+      height: 350,
     },
     container2:{
         top: 35,
