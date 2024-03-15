@@ -7,7 +7,7 @@ const { width } = Dimensions.get('window');
 
 const HourlyForecast = ({ selectedLocation }) => {
   const [hourlyForecast, setHourlyForecast] = useState([]);
-  const apiKey = '6a2f9c7c3c8a4191939248a6b25a586d';
+  const apiKey = '253682c0bd759acfb4255d4aa08c3dd7';
 
   const lat = selectedLocation?.latitude;
   const lng = selectedLocation?.longitude;
@@ -46,6 +46,7 @@ const HourlyForecast = ({ selectedLocation }) => {
 
     return (
       <View style={styles.hourlyForecastItem}>
+        
         <Text style={styles.time}>{time}</Text>
         <Ionicons name={weatherIcon} size={24} color="black" />
         <Text style={styles.temperature}>{Math.round(item.main.temp)}°C</Text>
@@ -55,7 +56,7 @@ const HourlyForecast = ({ selectedLocation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Hourly Forecast</Text>
+      
       <FlatList
         data={hourlyForecast}
         renderItem={renderHourlyForecastItem}
@@ -76,7 +77,8 @@ const HourlyForecast = ({ selectedLocation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 20,
+    position:"absolute",
+    top:"50%",
     paddingHorizontal: 20,
   },
   heading: {

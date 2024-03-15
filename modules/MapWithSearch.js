@@ -6,6 +6,7 @@ import axios from 'axios';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import HourlyForecast from './hourlyForecast';
+import * as location from 'expo-location';
 
 const MapWithSearch = () => {
   const [selectedLocation, setSelectedLocation] = useState(null);
@@ -19,11 +20,11 @@ const MapWithSearch = () => {
       console.warn("Selected place details are missing or invalid:", JSON.stringify(details?.geometry?.location));
       console.log(JSON.stringify(details?.geometry?.location));
     }
-  };
+    };
 
-  const Request = ({ selectedLocation }) => {
+    const Request = ({ selectedLocation }) => {
     const [weatherData, setWeatherData] = useState(null);
-    const apiKey = 'a1b2c3d4e5f6g7h8i9j0';
+    const apiKey = '253682c0bd759acfb4255d4aa08c3dd7';
 
     const lat = selectedLocation?.latitude;
     const lng = selectedLocation?.longitude;
@@ -46,7 +47,7 @@ const MapWithSearch = () => {
     if (!weatherData) {
       return (
         <View>
-          <Text>Loading...</Text>
+          <Text></Text>
         </View>
       );
     }
@@ -75,8 +76,7 @@ const MapWithSearch = () => {
           <Text style={styles.infoText}>{weatherData.weather[0].description}</Text>
         </View>
       </View>
-      <Request selectedLocation={selectedLocation} />
-      <HourlyForecast selectedLocation={selectedLocation} />
+      
       </>      
     );
   };
@@ -122,6 +122,7 @@ const MapWithSearch = () => {
         />
       </View>
       <Request selectedLocation={selectedLocation} />
+      <HourlyForecast selectedLocation={selectedLocation} />
     </>
   );
 };
