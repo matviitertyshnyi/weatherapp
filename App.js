@@ -9,7 +9,8 @@ import {
 } from "react-native";
 import MenuBtn from "./modules/MenuBtn";
 import MapWithSearch from "./modules/MapWithSearch";
-import WeatherApp from "./modules/Request";
+
+
 
 
 const Waiting_Driver_Screen = () => {
